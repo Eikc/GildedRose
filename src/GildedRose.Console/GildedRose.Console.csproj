@@ -47,6 +47,7 @@
     <Compile Include="Commands\UpdateAgedBrie.cs" />
     <Compile Include="Commands\UpdateBackStageItems.cs" />
     <Compile Include="Commands\UpdateConjuredItems.cs" />
+    <Compile Include="Commands\UpdateOrdinaryItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
