@@ -2,6 +2,7 @@
 using System.Linq;
 using FluentAssertions;
 using GildedRose.Console;
+using GildedRose.Console.Commands;
 using Xunit;
 
 namespace GildedRose.Tests
@@ -31,7 +32,16 @@ namespace GildedRose.Tests
                 new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
 
-            var app = new Program(items);
+            var updateAgedBrie = new UpdateAgedBrie(new IncreaseQuality(), new DecreaseSellIn());
+            var updateBackStageItems = new UpdateBackStageItems(new IncreaseQuality(), new DecreaseSellIn());
+            var updateOrdinaryItems = new UpdateOrdinaryItem(new DecreaseQuality(), new DecreaseSellIn());
+            var updateConjuredItems = new UpdateConjuredItems(new DecreaseQuality(), new DecreaseSellIn());
+
+            var updateInventory = new UpdateInventory(updateBackStageItems, updateAgedBrie, updateConjuredItems,
+                updateOrdinaryItems);
+
+
+            var app = new Program(items, updateInventory);
             app.UpdateQuality();
 
             var item = items.Single(x => x.Name == name);
@@ -168,7 +178,15 @@ namespace GildedRose.Tests
 
         private void RunProgram(Item item)
         {
-            var app = new Program(new List<Item> { item });
+            var updateAgedBrie = new UpdateAgedBrie(new IncreaseQuality(), new DecreaseSellIn());
+            var updateBackStageItems = new UpdateBackStageItems(new IncreaseQuality(), new DecreaseSellIn());
+            var updateOrdinaryItems = new UpdateOrdinaryItem(new DecreaseQuality(), new DecreaseSellIn());
+            var updateConjuredItems = new UpdateConjuredItems(new DecreaseQuality(), new DecreaseSellIn());
+
+            var updateInventory = new UpdateInventory(updateBackStageItems, updateAgedBrie, updateConjuredItems,
+                updateOrdinaryItems);
+
+            var app = new Program(new List<Item> { item }, updateInventory);
             app.UpdateQuality();
         }
     }
