@@ -42,7 +42,7 @@ namespace GildedRose.Console
         {
             foreach (var item in _items)
             {
-                if (!item.IsAgedBree() && !item.IsBackStagePass())
+                if (!item.IsAgedBrie() && !item.IsBackStagePass())
                 {
                     if (item.Quality > 0)
                     {
@@ -91,7 +91,7 @@ namespace GildedRose.Console
 
                 if (item.SellIn < 0)
                 {
-                    if (!item.IsAgedBree())
+                    if (!item.IsAgedBrie())
                     {
                         if (!item.IsBackStagePass())
                         {
@@ -137,7 +137,7 @@ namespace GildedRose.Console
 
     public static class ItemExtenstions
     {
-        public static bool IsAgedBree(this Item item) => item.Name == "Aged Brie";
+        public static bool IsAgedBrie(this Item item) => item.Name == "Aged Brie";
 
         public static bool IsBackStagePass(this Item item) => item.Name == "Backstage passes to a TAFKAL80ETC concert";
 

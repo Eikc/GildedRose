@@ -16,7 +16,7 @@ namespace GildedRose.Tests
         {
             var item = new Item { Name = "Aged Brie", SellIn = 1, Quality = 0 };
 
-            item.IsAgedBree().Should().BeTrue();
+            item.IsAgedBrie().Should().BeTrue();
         }
 
         [Fact]
