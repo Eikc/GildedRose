@@ -153,6 +153,19 @@ namespace GildedRose.Tests
             item.Quality.ShouldBeEquivalentTo(0);
         }
 
+        [Theory]
+        [InlineData(5, 8)]
+        [InlineData(0, 6)]
+        public void ConjuredItemsDegradeInQualityTwiceAsFastAsNormalItems(int sellIn, int wantedQuality)
+        {
+            var item = new Item { Name = "Conjured Mana Cake", SellIn = sellIn, Quality = 10 };
+
+            RunProgram(item);
+
+            item.Quality.ShouldBeEquivalentTo(wantedQuality);
+        }
+
+
         private void RunProgram(Item item)
         {
             var app = new Program(new List<Item> { item });
