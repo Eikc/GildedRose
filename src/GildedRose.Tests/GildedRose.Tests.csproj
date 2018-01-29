@@ -79,6 +79,7 @@
     <Compile Include="Commands\DecreaseSellInTests.cs" />
     <Compile Include="Commands\IncreaseQualityTests.cs" />
     <Compile Include="Commands\UpdateAgedBrieTests.cs" />
+    <Compile Include="Commands\UpdateBackStageItemTests.cs" />
     <Compile Include="ItemExtensionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestAssemblyTests.cs" />
