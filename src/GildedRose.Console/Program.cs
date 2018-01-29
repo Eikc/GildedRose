@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace GildedRose.Console
 {
@@ -40,85 +41,87 @@ namespace GildedRose.Console
 
         public void UpdateQuality()
         {
-            foreach (var item in _items)
+            foreach (var item in _items.Where(x => !x.IsSulfurasTheHandOfRagnaros()))
             {
-                if (!item.IsAgedBrie() && !item.IsBackStagePass())
-                {
-                    if (item.Quality > 0)
-                    {
-                        if (!item.IsSulfurasTheHandOfRagnaros())
-                        {
-                            item.Quality = item.Quality - 1;
-                        }
-                    }
-                }
-                else
-                {
-                    if (item.Quality < 50)
-                    {
-                        item.Quality = item.Quality + 1;
+                AdjustQualityOf(item);
+                DecreaseSellInFor(item);
+                DecreaseQualityOfOldItem(item);
+            }
+        }
 
-                        if (item.IsBackStagePass())
-                        {
-                            if (item.SellIn < 11)
-                            {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
-                            }
+        private static void DecreaseQualityOfOldItem(Item item)
+        {
+            if (item.SellIn >= 0) return;
 
-                            if (item.SellIn < 6)
-                            {
-                                if (item.Quality < 50)
-                                {
-                                    item.Quality = item.Quality + 1;
-                                }
-                            }
-                        }
-                    }
-                }
+            if (!item.IsAgedBrie() && !item.IsBackStagePass())
+            {
+                if (item.Quality <= 0) return;
 
-                if (!item.IsSulfurasTheHandOfRagnaros())
-                {
-                    item.SellIn = item.SellIn - 1;
-                }
+                item.Quality = item.Quality - 1;
 
                 if (item.IsConjured())
                 {
                     item.Quality--;
                 }
-
-                if (item.SellIn < 0)
+            }
+            else if (item.IsBackStagePass())
+            {
+                item.Quality = item.Quality - item.Quality;
+            }
+            else
+            {
+                if (item.Quality < 50)
                 {
-                    if (!item.IsAgedBrie())
-                    {
-                        if (!item.IsBackStagePass())
-                        {
-                            if (item.Quality > 0)
-                            {
-                                if (!item.IsSulfurasTheHandOfRagnaros())
-                                {
-                                    item.Quality = item.Quality - 1;
-                                }
+                    item.Quality = item.Quality + 1;
+                }
+            }
+        }
 
-                                if (item.IsConjured())
-                                {
-                                    item.Quality--;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            item.Quality = item.Quality - item.Quality;
-                        }
-                    }
-                    else
+        private static void DecreaseSellInFor(Item item)
+        {
+            item.SellIn--;
+        }
+
+        private static void AdjustQualityOf(Item item)
+        {
+            if (item.IsConjured())
+            {
+                item.Quality--;
+            }
+
+            if (item.IsAgedBrie() || item.IsBackStagePass())
+            {
+                IncreaseBrieAndBackStage(item);
+                return;
+            }
+
+            if (item.Quality > 0)
+            {
+                item.Quality--;
+            }
+        }
+
+        private static void IncreaseBrieAndBackStage(Item item)
+        {
+            if (item.Quality >= 50) return;
+
+            item.Quality = item.Quality + 1;
+
+            if (item.IsBackStagePass())
+            {
+                if (item.SellIn < 11)
+                {
+                    if (item.Quality < 50)
                     {
-                        if (item.Quality < 50)
-                        {
-                            item.Quality = item.Quality + 1;
-                        }
+                        item.Quality = item.Quality + 1;
+                    }
+                }
+
+                if (item.SellIn < 6)
+                {
+                    if (item.Quality < 50)
+                    {
+                        item.Quality = item.Quality + 1;
                     }
                 }
             }
