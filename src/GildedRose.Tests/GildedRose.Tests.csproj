@@ -78,6 +78,7 @@
     <Compile Include="Commands\DecreaseQualityTests.cs" />
     <Compile Include="Commands\DecreaseSellInTests.cs" />
     <Compile Include="Commands\IncreaseQualityTests.cs" />
+    <Compile Include="Commands\UpdateInventoryTests.cs" />
     <Compile Include="Commands\UpdateAgedBrieTests.cs" />
     <Compile Include="Commands\UpdateBackStageItemTests.cs" />
     <Compile Include="Commands\UpdateConjuredItemsTests.cs" />
