@@ -134,4 +134,15 @@ namespace GildedRose.Console
         public int Quality { get; set; }
     }
 
+
+    public static class ItemExtenstions
+    {
+        public static bool IsAgedBree(this Item item) => item.Name == "Aged Brie";
+
+        public static bool IsBackStagePass(this Item item) => item.Name == "Backstage passes to a TAFKAL80ETC concert";
+
+        public static bool IsSulfurasTheHandOfRagnaros(this Item item) => item.Name == "Sulfuras, Hand of Ragnaros";
+
+        public static bool IsConjured(this Item item) => item.Name.Contains("Conjured");
+    }
 }
