@@ -44,6 +44,7 @@
     <Compile Include="Commands\DecreaseQuality.cs" />
     <Compile Include="Commands\DecreaseSellIn.cs" />
     <Compile Include="Commands\IncreaseQuality.cs" />
+    <Compile Include="Commands\UpdateAgedBrie.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
