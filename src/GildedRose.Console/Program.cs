@@ -42,11 +42,11 @@ namespace GildedRose.Console
         {
             foreach (var item in _items)
             {
-                if (item.Name != "Aged Brie" && item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                if (!item.IsAgedBree() && !item.IsBackStagePass())
                 {
                     if (item.Quality > 0)
                     {
-                        if (item.Name != "Sulfuras, Hand of Ragnaros")
+                        if (!item.IsSulfurasTheHandOfRagnaros())
                         {
                             item.Quality = item.Quality - 1;
                         }
@@ -58,7 +58,7 @@ namespace GildedRose.Console
                     {
                         item.Quality = item.Quality + 1;
 
-                        if (item.Name == "Backstage passes to a TAFKAL80ETC concert")
+                        if (item.IsBackStagePass())
                         {
                             if (item.SellIn < 11)
                             {
@@ -79,30 +79,30 @@ namespace GildedRose.Console
                     }
                 }
 
-                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                if (!item.IsSulfurasTheHandOfRagnaros())
                 {
                     item.SellIn = item.SellIn - 1;
                 }
 
-                if (item.Name.Contains("Conjured"))
+                if (item.IsConjured())
                 {
                     item.Quality--;
                 }
 
                 if (item.SellIn < 0)
                 {
-                    if (item.Name != "Aged Brie")
+                    if (!item.IsAgedBree())
                     {
-                        if (item.Name != "Backstage passes to a TAFKAL80ETC concert")
+                        if (!item.IsBackStagePass())
                         {
                             if (item.Quality > 0)
                             {
-                                if (item.Name != "Sulfuras, Hand of Ragnaros")
+                                if (!item.IsSulfurasTheHandOfRagnaros())
                                 {
                                     item.Quality = item.Quality - 1;
                                 }
 
-                                if (item.Name.Contains("Conjured"))
+                                if (item.IsConjured())
                                 {
                                     item.Quality--;
                                 }
