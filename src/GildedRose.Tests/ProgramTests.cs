@@ -7,7 +7,7 @@ using Xunit;
 
 namespace GildedRose.Tests
 {
-    public class UpdateQualityAndQuantityTests
+    public class ProgramTests
     {
         [Theory]
         [InlineData("+5 Dexterity Vest", 9, 19)]
