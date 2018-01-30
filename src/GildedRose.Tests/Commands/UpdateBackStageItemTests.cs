@@ -72,6 +72,17 @@ namespace GildedRose.Tests.Commands
         }
 
         [Fact]
+        public void UpdateBackStageWillIncreaseInQualityIfTheSellInIsZero()
+        {
+            var backstage = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 20 };
+
+            _sut.Execute(backstage);
+
+            _increaseQuality.Received(3).Execute(Arg.Is(backstage));
+        }
+
+
+        [Fact]
         public void UpdateBackStageWillDecreaseQualityToZeroWhenConcertIsOver()
         {
             var backstage = new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = -1, Quality = 20 };
