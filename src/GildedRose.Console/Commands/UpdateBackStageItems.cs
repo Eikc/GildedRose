@@ -32,10 +32,10 @@
             if (LessThan6DaysTillConcert(item))
                 _increaseQuality.Execute(item);
 
+            _decreaseSellIn.Execute(item);
+
             if (ConcertIsOver(item))
                 item.Quality = 0;
-
-            _decreaseSellIn.Execute(item);
         }
 
         private static bool LessThan11DaysTillConcert(Item item)
