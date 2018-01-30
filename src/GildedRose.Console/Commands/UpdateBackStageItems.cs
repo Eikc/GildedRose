@@ -45,6 +45,6 @@
             => item.SellIn < 6;
 
         private static bool ConcertIsOver(Item item)
-            => item.SellIn <= 0;
+            => item.SellIn < 0;
     }
 }
