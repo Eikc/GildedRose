@@ -56,8 +56,8 @@ namespace GildedRose.Tests.Commands
 
             _sut.Execute(item);
 
-            _increaseQuality.DidNotReceiveWithAnyArgs();
-            _decreaseSellIn.DidNotReceiveWithAnyArgs();
+            _increaseQuality.DidNotReceive().Execute(Arg.Is(item));
+            _decreaseSellIn.DidNotReceive().Execute(Arg.Is(item));
         }
     }
 }
