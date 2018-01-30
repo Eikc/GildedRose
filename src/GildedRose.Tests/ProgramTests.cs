@@ -15,6 +15,7 @@ namespace GildedRose.Tests
         [InlineData("Elixir of the Mongoose", 4, 6)]
         [InlineData("Sulfuras, Hand of Ragnaros", 0, 80)]
         [InlineData("Backstage passes to a TAFKAL80ETC concert", 14, 21)]
+        [InlineData("Conjured Mana Cake", 2, 4)]
         public void UpdateQualityUdatesCorrectly(string name, int sellIn, int quality)
         {
             var items = new List<Item>
