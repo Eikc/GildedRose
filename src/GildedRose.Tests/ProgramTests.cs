@@ -32,17 +32,7 @@ namespace GildedRose.Tests
                 new Item {Name = "Conjured Mana Cake", SellIn = 3, Quality = 6}
             };
 
-            var updateAgedBrie = new UpdateAgedBrie(new IncreaseQuality(), new DecreaseSellIn());
-            var updateBackStageItems = new UpdateBackStageItems(new IncreaseQuality(), new DecreaseSellIn());
-            var updateOrdinaryItems = new UpdateOrdinaryItem(new DecreaseQuality(), new DecreaseSellIn());
-            var updateConjuredItems = new UpdateConjuredItems(new DecreaseQuality(), new DecreaseSellIn());
-
-            var updateInventory = new UpdateInventory(updateBackStageItems, updateAgedBrie, updateConjuredItems,
-                updateOrdinaryItems);
-
-
-            var app = new Program(items, updateInventory);
-            app.UpdateQuality();
+            RunProgram(items);
 
             var item = items.Single(x => x.Name == name);
 
@@ -63,7 +53,7 @@ namespace GildedRose.Tests
         [InlineData(-1, 2, 0)]
         public void OnceTheSellByDateHasPassedQualityDegradesTwiceAsFast(int sellIn, int currentQuality, int wantedQuality)
         {
-            var item = new Item {Name = "+5 Dexterity Vest", SellIn = sellIn, Quality = currentQuality};
+            var item = new Item { Name = "+5 Dexterity Vest", SellIn = sellIn, Quality = currentQuality };
 
             RunProgram(item);
 
@@ -175,8 +165,12 @@ namespace GildedRose.Tests
             item.Quality.ShouldBeEquivalentTo(wantedQuality);
         }
 
-
         private void RunProgram(Item item)
+        {
+            RunProgram(new List<Item> { item });
+        }
+
+        private void RunProgram(List<Item> items)
         {
             var updateAgedBrie = new UpdateAgedBrie(new IncreaseQuality(), new DecreaseSellIn());
             var updateBackStageItems = new UpdateBackStageItems(new IncreaseQuality(), new DecreaseSellIn());
@@ -186,8 +180,9 @@ namespace GildedRose.Tests
             var updateInventory = new UpdateInventory(updateBackStageItems, updateAgedBrie, updateConjuredItems,
                 updateOrdinaryItems);
 
-            var app = new Program(new List<Item> { item }, updateInventory);
+            var app = new Program(items, updateInventory);
             app.UpdateQuality();
+
         }
     }
 }
