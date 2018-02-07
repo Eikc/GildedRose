@@ -41,6 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\DecreaseQuality.cs" />
+    <Compile Include="Commands\DecreaseSellIn.cs" />
+    <Compile Include="Commands\IncreaseQuality.cs" />
+    <Compile Include="Commands\UpdateAgedBrie.cs" />
+    <Compile Include="Commands\UpdateBackStageItems.cs" />
+    <Compile Include="Commands\UpdateConjuredItems.cs" />
+    <Compile Include="Commands\UpdateInventory.cs" />
+    <Compile Include="Commands\UpdateOrdinaryItem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
